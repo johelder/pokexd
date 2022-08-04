@@ -1,11 +1,12 @@
 import type { NextPage } from 'next';
+import { Home } from './home';
 
-const Home: NextPage = () => {
+const App: NextPage = () => {
   return (
-    <div>
-      <h1>Hello world from next!</h1>
-    </div>
+    <>
+      <Home />
+    </>
   );
 };
 
-export default Home;
+export default App;
