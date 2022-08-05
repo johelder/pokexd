@@ -1,0 +1,19 @@
+@colors: {
+  colorless: #e5d6d0;
+  darkness: #2c2e2b;
+  dragon: #c6a114;
+  fairy: #e03a83;
+  fighting: #ff501f;
+  fire: #e24242;
+  grass: #7db808;
+  lightning: #fab536;
+  metal: #8a776e;
+  psychic: #a65e9a;
+  water: #5bc7e5;
+};
+
+each(@colors, {
+  .@{key} {
+    background-color: @value;
+  };
+});
