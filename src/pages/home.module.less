@@ -1,3 +1,7 @@
+.bannerContainer {
+  display: none;
+}
+
 .content {
   max-width: 950px;
   margin: 0 auto;
@@ -5,4 +9,39 @@
 
   display: flex;
   flex-direction: column;
+
+  h1 {
+    text-align: center;
+
+    padding-top: 10px;
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    align-items: center;
+
+    li {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    span {
+      width: 100%;
+      padding: 10px 20px;
+      margin: 10px 0;
+
+      text-align: center;
+      font-weight: bold;
+    }
+  }
 }
