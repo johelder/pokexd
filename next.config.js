@@ -6,4 +6,7 @@ module.exports = withLess({
   lessLoaderOptions: {
     lessOptions: {},
   },
+  images: {
+    domains: ['images.pokemontcg.io'],
+  },
 });
