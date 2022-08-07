@@ -3,30 +3,33 @@ import Head from 'next/head';
 
 import { useCallback, useEffect, useState } from 'react';
 
-import Card, { IPokemon } from '../../components/Card';
+import { Card } from '../../components';
+
+import { TPageStatus, IPokemon } from '../../dtos';
 
 import { PokemonTCG } from '../../services/pokemontcg';
-import { Layout, Typography, Col, Row } from 'antd';
+import { Layout, Col, Row, PageHeader, Spin, notification } from 'antd';
 
 import styles from './styles.module.less';
 
 const { Content: AntdContent } = Layout;
-const { Title } = Typography;
 
 interface IRouteProps {
   slug: string;
 }
 
-type IPageStatus = 'idle' | 'loading' | 'resolved' | 'error';
-
 const ListType = () => {
   const [pokemons, setPokemons] = useState<IPokemon[] | undefined>([]);
-  const [pageStatus, setPageStatus] = useState<IPageStatus>('idle');
+  const [pageStatus, setPageStatus] = useState<TPageStatus>('idle');
 
   const router = useRouter();
   const { slug } = router.query as unknown as IRouteProps;
 
   const getCards = useCallback(async () => {
+    if (!slug) {
+      return;
+    }
+
     setPageStatus('loading');
     const response = await PokemonTCG.getCardsByType(slug);
 
@@ -44,11 +47,23 @@ const ListType = () => {
   }, [getCards]);
 
   if (pageStatus === 'loading') {
-    return <h1>carregando...</h1>;
+    return (
+      <article className={styles.loadingContainer}>
+        <Spin size="large" />
+      </article>
+    );
   }
 
   if (pageStatus === 'error') {
-    return <h1>error...</h1>;
+    notification.destroy();
+    notification.error({
+      message: 'Failed to load cards',
+      description: 'You can try again later!',
+      maxCount: 1,
+    });
+
+    router.push('/');
+    return;
   }
 
   return (
@@ -57,12 +72,18 @@ const ListType = () => {
         <title>{slug} | pokexd</title>
       </Head>
 
-      <AntdContent className={styles.content}>
-        <Title level={3}>{slug}</Title>
+      <div className={styles.headerTitleContainer}>
+        <PageHeader
+          title="pokexd"
+          onBack={() => router.back()}
+          className={styles.headerTitle}
+        />
+      </div>
 
-        <Row gutter={{ xs: 4, sm: 8, md: 16, lg: 24 }}>
+      <AntdContent className={styles.content}>
+        <Row gutter={{ xs: 4, sm: 8, md: 16, lg: 24 }} wrap justify="center">
           {pokemons?.map(pokemon => (
-            <Col key={pokemon.id}>
+            <Col key={pokemon.id} className={styles.columnContainer}>
               <Card pokemon={pokemon} />
             </Col>
           ))}
