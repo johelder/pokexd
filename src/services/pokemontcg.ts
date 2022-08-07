@@ -1,7 +1,6 @@
 import { api } from './api';
 
-import { TCG } from '../components/TypeButton';
-import { IPokemon } from '../components/Card';
+import { TCG, IPokemon } from '../dtos';
 
 interface IAllTypesRequest {
   data: TCG[];
