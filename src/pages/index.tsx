@@ -1,11 +1,10 @@
 import type { GetStaticProps } from 'next';
-import Image from 'next/image';
 import Head from 'next/head';
 
 import { PokemonTCG } from '../services/pokemontcg';
 
 import { TypeButton } from '../components';
-import { TCG } from '../components/TypeButton';
+import { TCG } from '../dtos';
 import { Layout, Typography } from 'antd';
 
 import banner from '../assets/images/banner.jpg';
@@ -26,24 +25,26 @@ const Home = ({ types }: IHomeProps) => {
         <title>Home | pokexd</title>
       </Head>
 
-      <aside className={styles.bannerContainer}>
-        <Image src={banner} alt="An bulbasaur banner" />
-      </aside>
+      <div className={styles.container}>
+        <aside className={styles.bannerContainer}>
+          <img
+            src={banner.src}
+            alt="An bulbasaur banner"
+            className={styles.image}
+          />
+        </aside>
 
-      <AntdContent className={styles.content}>
-        <Title>pokexd</Title>
-        <Title level={2}>
-          Find your favorites card from Pokemon Trading Card Game
-        </Title>
+        <AntdContent className={styles.content}>
+          <div className={styles.separator}>
+            <Title>pokexd</Title>
+          </div>
+          <Title level={2}>
+            Find your favorites card from Pokemon Trading Card Game
+          </Title>
 
-        <ul>
-          {types.map(type => (
-            <li key={type}>
-              <TypeButton type={type} />
-            </li>
-          ))}
-        </ul>
-      </AntdContent>
+          <TypeButton types={types} />
+        </AntdContent>
+      </div>
     </>
   );
 };
