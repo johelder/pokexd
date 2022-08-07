@@ -1,32 +1,16 @@
-@colors: {
-  colorless: #e5d6d0;
-  darkness: #2c2e2b;
-  dragon: #c6a114;
-  fairy: #e03a83;
-  fighting: #ff501f;
-  fire: #e24242;
-  grass: #7db808;
-  lightning: #fab536;
-  metal: #8a776e;
-  psychic: #a65e9a;
-  water: #5bc7e5;
-};
+.container {
+  background-color: #8381f1;
+  padding: 20px;
 
-each(@colors, {
-  .@{key} {
-    background-color: @value;
-    border-color: @value;
+  border-radius: 50px;
+  width: 350px;
+  align-self: center;
 
-    padding: 40px;
-    margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      filter: brightness(0.7);
-      background-color: @value;
-    }
-  };
-});
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+}
