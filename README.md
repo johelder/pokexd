@@ -22,6 +22,10 @@ Este projeto é um catálogo das cartas do jogo Pokemon Trading Card Game.
 - Ant Design;
 - Less;
 
+## Protótipo | 💅
+
+[Figma](https://www.figma.com/file/uqtKkQld7teE2sdwXHT3ZA/pokexd?node-id=0%3A1)
+
 ## Como rodar | ⚙️
 
 1. Clone o repositório:
